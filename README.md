@@ -1,2 +1,4 @@
-# teleport-benchmark
-Benchmark for the kidnapped robot problem
+
+# Install
+
+sudo apt-get install texlive-latex-extra texlive-fonts-recommended dvipng cm-super
