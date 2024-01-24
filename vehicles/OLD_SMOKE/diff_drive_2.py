@@ -9,7 +9,7 @@ GitHub: https://github.com/botprof/agv-examples
 
 import matplotlib
 
-from vehicles._vehicle import DiffDrive, SpeedAngularDiffDrive
+from vehicles.vehicle import DiffDrive, SpeedAngularDiffDrive
 
 matplotlib.use("TkAgg")
 import numpy as np
@@ -56,7 +56,7 @@ u[:, 0] = openloop(t[0])
 
 # Run the simulation
 for k in range(1, N):
-    vehicle = vehicle.control(u[:,k-1])
+    vehicle = vehicle._control(u[:, k - 1])
     x[:, k] = vehicle.cur  #rk_four(diffdrive_f, x[:, k - 1], u[:, k - 1], T)
     u[:, k] = openloop(t[k])
 

@@ -10,7 +10,7 @@ GitHub: https://github.com/botprof/agv-examples
 import matplotlib
 
 from vehicles.OLD.mobotpy.models import DiffDrive
-from vehicles._vehicle import Unicycle
+from vehicles.vehicle import Unicycle
 
 matplotlib.use("TkAgg")
 import numpy as np
@@ -71,7 +71,7 @@ for k in range(1, N):
         u[0, k - 1] = 0.0
         u[1, k - 1] = 0.0
 
-    vehicle = vehicle.control(u[:,k-1])
+    vehicle = vehicle._control(u[:, k - 1])
 
 
     # Compute the lateral force applied to the vehicle's wheel

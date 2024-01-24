@@ -10,6 +10,13 @@ class _Vehicle:
     cur_x: float
     cur_y: float
 
+    cur_pos_vel: float
+    cur_ang_vel: float
+
+    @property
+    def cur_pos(self):
+        return jp.array([self.cur_x, self.cur_y])
+
     def cur_keys(self):
         raise NotImplementedError()
 
@@ -41,7 +48,7 @@ class _Vehicle:
         return u, self.cur
 
     @jax.jit
-    def control(self, u):
+    def _control(self, u):
         u = self.parse_control(u)
         u, cur = self.pre_control(u)
 
@@ -56,6 +63,13 @@ class _Vehicle:
         return self.replace(
             **ret
         )
+
+    def control(self, pos_vel_delta, ang_vel_delta):
+        new_pos_vel = self.cur_pos_vel + pos_vel_delta
+        new_ang_vel = self.cur_ang_vel + ang_vel_delta
+
+        new_vehicle = self._control(u=jp.array([new_pos_vel, new_ang_vel]))
+        return new_vehicle.replace(cur_pos_vel=new_pos_vel, cur_ang_vel=new_ang_vel)
 
 @struct.dataclass
 class _Vehicle_1Angle(_Vehicle):
