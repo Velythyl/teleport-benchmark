@@ -20,9 +20,6 @@ setup(
         "scikit-learn",
         "matplotlib",
         "pillow",
-        "pyyaml",
-        "opencv-python",
-        "guppy3",
     ],
     keywords="Probabilistic sampling benchmark localization teleportation kidnapped robot problem",
 )
